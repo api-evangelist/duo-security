@@ -1,0 +1,107 @@
+{
+    "name": "Duo Security",
+    "description": "Duo???s Trusted Access platform verifies the identity of your users with two-factor authentication and security health of their devices before they connect to the apps you want them to access.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1050-duo-security.jpg",
+    "tags": [
+        "api provider",
+        "api service provider",
+        "authentication",
+        "have api",
+        "security"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/duo-security\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Duo Security",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1050-duo-security.jpg",
+            "humanURL": "http:\/\/www.duosecurity.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/duo-security-openapi.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/duo-security-postman-collection.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Base",
+            "url": "http:\/\/api.duosecurity.com"
+        },
+        {
+            "type": "Blog",
+            "url": "http:\/\/blog.duosecurity.com"
+        },
+        {
+            "type": "Blog RSS",
+            "url": "https:\/\/www.duosecurity.com\/feed"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "http:\/\/www.crunchbase.com\/company\/duo-security"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/duo-security"
+        },
+        {
+            "type": "Developers",
+            "url": "https:\/\/www.duosecurity.com\/api"
+        },
+        {
+            "type": "Email",
+            "url": "support@duo.com"
+        },
+        {
+            "type": "Email",
+            "url": "press@duo.com"
+        },
+        {
+            "type": "Email",
+            "url": "privacy@duosecurity.com"
+        },
+        {
+            "type": "Email",
+            "url": "mops@duosecurity.com"
+        },
+        {
+            "type": "Email",
+            "url": "support@duosecurity.com"
+        },
+        {
+            "type": "Email",
+            "url": "security@duosecurity.com"
+        },
+        {
+            "type": "Email",
+            "url": "sally@duosecurity.com"
+        },
+        {
+            "type": "Email",
+            "url": "eclat@duosecurity.com"
+        },
+        {
+            "type": "Pricing",
+            "url": "https:\/\/duo.com\/pricing"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/duosec"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/www.duosecurity.com"
+        }
+    ]
+}
