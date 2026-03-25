@@ -1,0 +1,38 @@
+aid: duo-security
+name: Duo Security
+description: >-
+  Duo Security is a multi-factor authentication and zero trust security platform from Cisco for securing access to applications and APIs.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Authentication
+  - MFA
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/duo-security/refs/heads/main/apis.yml
+created: '2026-03-25'
+modified: '2026-03-25'
+specificationVersion: '0.19'
+apis:
+  - aid: duo-security:duo-security
+    name: Duo Security
+    description: >-
+      Duo Security is a multi-factor authentication and zero trust security platform from Cisco for securing access to applications and APIs.
+    humanURL: https://duo.com
+    tags:
+      - Authentication
+      - MFA
+    properties:
+      - type: Documentation
+        url: https://duo.com/docs
+      - type: GitHub Repository
+        url: https://github.com/duosecurity
+common:
+  - type: Website
+    url: https://duo.com
+  - type: Documentation
+    url: https://duo.com/docs
+  - type: GitHub Organization
+    url: https://github.com/duosecurity
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
