@@ -42,6 +42,11 @@ common:
     url: https://duo.com/docs
   - type: GitHub Organization
     url: https://github.com/duosecurity
+  - type: Integrations
+    url: https://duo.com/integrations
+integrations:
+  - name: See how Duo strengthens AWS security
+  - name: See how Duo secures digital workspaces
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
