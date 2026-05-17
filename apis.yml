@@ -40,7 +40,7 @@ common:
     url: https://duo.com
   - type: Documentation
     url: https://duo.com/docs
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/duosecurity
   - type: Integrations
     url: https://duo.com/integrations
