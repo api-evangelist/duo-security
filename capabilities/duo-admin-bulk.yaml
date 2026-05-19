@@ -1,0 +1,71 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Duo Admin API — Bulk
+  description: 'Duo Admin API — Bulk. 1 operations. Lead operation: Bulk operations. Self-contained Naftiko capability covering
+    one Duo Security business surface.'
+  tags:
+  - Duo Security
+  - Bulk
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DUO_SECURITY_API_KEY: DUO_SECURITY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: duo-admin-bulk
+    baseUri: https://api-XXXXXXXX.duosecurity.com
+    description: Duo Admin API — Bulk business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-v1-bulk
+      path: /admin/v1/bulk
+      operations:
+      - name: bulkoperations
+        method: POST
+        description: Bulk operations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.DUO_SECURITY_USER}}'
+      password: '{{env.DUO_SECURITY_PASS}}'
+  exposes:
+  - type: rest
+    namespace: duo-admin-bulk-rest
+    port: 8080
+    description: REST adapter for Duo Admin API — Bulk. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/admin/v1/bulk
+      name: admin-v1-bulk
+      description: REST surface for admin-v1-bulk.
+      operations:
+      - method: POST
+        name: bulkoperations
+        description: Bulk operations
+        call: duo-admin-bulk.bulkoperations
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: duo-admin-bulk-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Duo Admin API — Bulk. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: bulk-operations
+      description: Bulk operations
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: duo-admin-bulk.bulkoperations
+      outputParameters:
+      - type: object
+        mapping: $.

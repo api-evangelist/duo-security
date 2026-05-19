@@ -1,0 +1,281 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Duo Admin API — Groups
+  description: 'Duo Admin API — Groups. 8 operations. Lead operation: List groups. Self-contained Naftiko capability covering
+    one Duo Security business surface.'
+  tags:
+  - Duo Security
+  - Groups
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DUO_SECURITY_API_KEY: DUO_SECURITY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: duo-admin-groups
+    baseUri: https://api-XXXXXXXX.duosecurity.com
+    description: Duo Admin API — Groups business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-v1-groups
+      path: /admin/v1/groups
+      operations:
+      - name: listgroups
+        method: GET
+        description: List groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: creategroup
+        method: POST
+        description: Create group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-v1-groups-group_id
+      path: /admin/v1/groups/{group_id}
+      operations:
+      - name: updategroup
+        method: POST
+        description: Update group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-v1-users-user_id-groups
+      path: /admin/v1/users/{user_id}/groups
+      operations:
+      - name: listusergroups
+        method: GET
+        description: List user groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: associateusergroup
+        method: POST
+        description: Associate group with user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-v1-users-user_id-groups-group_id
+      path: /admin/v1/users/{user_id}/groups/{group_id}
+      operations:
+      - name: disassociateusergroup
+        method: DELETE
+        description: Disassociate group from user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-v2-groups-group_id
+      path: /admin/v2/groups/{group_id}
+      operations:
+      - name: getgroupv2
+        method: GET
+        description: Get group (v2)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-v2-groups-group_id-users
+      path: /admin/v2/groups/{group_id}/users
+      operations:
+      - name: listgroupusersv2
+        method: GET
+        description: List group users (v2)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.DUO_SECURITY_USER}}'
+      password: '{{env.DUO_SECURITY_PASS}}'
+  exposes:
+  - type: rest
+    namespace: duo-admin-groups-rest
+    port: 8080
+    description: REST adapter for Duo Admin API — Groups. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/v1/groups
+      name: admin-v1-groups
+      description: REST surface for admin-v1-groups.
+      operations:
+      - method: GET
+        name: listgroups
+        description: List groups
+        call: duo-admin-groups.listgroups
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: creategroup
+        description: Create group
+        call: duo-admin-groups.creategroup
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/v1/groups/{group-id}
+      name: admin-v1-groups-group-id
+      description: REST surface for admin-v1-groups-group_id.
+      operations:
+      - method: POST
+        name: updategroup
+        description: Update group
+        call: duo-admin-groups.updategroup
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/v1/users/{user-id}/groups
+      name: admin-v1-users-user-id-groups
+      description: REST surface for admin-v1-users-user_id-groups.
+      operations:
+      - method: GET
+        name: listusergroups
+        description: List user groups
+        call: duo-admin-groups.listusergroups
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: associateusergroup
+        description: Associate group with user
+        call: duo-admin-groups.associateusergroup
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/v1/users/{user-id}/groups/{group-id}
+      name: admin-v1-users-user-id-groups-group-id
+      description: REST surface for admin-v1-users-user_id-groups-group_id.
+      operations:
+      - method: DELETE
+        name: disassociateusergroup
+        description: Disassociate group from user
+        call: duo-admin-groups.disassociateusergroup
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/v2/groups/{group-id}
+      name: admin-v2-groups-group-id
+      description: REST surface for admin-v2-groups-group_id.
+      operations:
+      - method: GET
+        name: getgroupv2
+        description: Get group (v2)
+        call: duo-admin-groups.getgroupv2
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/v2/groups/{group-id}/users
+      name: admin-v2-groups-group-id-users
+      description: REST surface for admin-v2-groups-group_id-users.
+      operations:
+      - method: GET
+        name: listgroupusersv2
+        description: List group users (v2)
+        call: duo-admin-groups.listgroupusersv2
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: duo-admin-groups-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Duo Admin API — Groups. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-groups
+      description: List groups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: duo-admin-groups.listgroups
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-group
+      description: Create group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: duo-admin-groups.creategroup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-group
+      description: Update group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: duo-admin-groups.updategroup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-user-groups
+      description: List user groups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: duo-admin-groups.listusergroups
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: associate-group-user
+      description: Associate group with user
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: duo-admin-groups.associateusergroup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: disassociate-group-user
+      description: Disassociate group from user
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: duo-admin-groups.disassociateusergroup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-group-v2
+      description: Get group (v2)
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: duo-admin-groups.getgroupv2
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-group-users-v2
+      description: List group users (v2)
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: duo-admin-groups.listgroupusersv2
+      outputParameters:
+      - type: object
+        mapping: $.

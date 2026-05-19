@@ -1,0 +1,96 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Duo Admin API — Bypass Codes
+  description: 'Duo Admin API — Bypass Codes. 2 operations. Lead operation: List user bypass codes. Self-contained Naftiko
+    capability covering one Duo Security business surface.'
+  tags:
+  - Duo Security
+  - Bypass Codes
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DUO_SECURITY_API_KEY: DUO_SECURITY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: duo-admin-bypass-codes
+    baseUri: https://api-XXXXXXXX.duosecurity.com
+    description: Duo Admin API — Bypass Codes business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-v1-users-user_id-bypass_codes
+      path: /admin/v1/users/{user_id}/bypass_codes
+      operations:
+      - name: listuserbypasscodes
+        method: GET
+        description: List user bypass codes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createuserbypasscodes
+        method: POST
+        description: Generate bypass codes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.DUO_SECURITY_USER}}'
+      password: '{{env.DUO_SECURITY_PASS}}'
+  exposes:
+  - type: rest
+    namespace: duo-admin-bypass-codes-rest
+    port: 8080
+    description: REST adapter for Duo Admin API — Bypass Codes. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/v1/users/{user-id}/bypass-codes
+      name: admin-v1-users-user-id-bypass-codes
+      description: REST surface for admin-v1-users-user_id-bypass_codes.
+      operations:
+      - method: GET
+        name: listuserbypasscodes
+        description: List user bypass codes
+        call: duo-admin-bypass-codes.listuserbypasscodes
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createuserbypasscodes
+        description: Generate bypass codes
+        call: duo-admin-bypass-codes.createuserbypasscodes
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: duo-admin-bypass-codes-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Duo Admin API — Bypass Codes. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-user-bypass-codes
+      description: List user bypass codes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: duo-admin-bypass-codes.listuserbypasscodes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: generate-bypass-codes
+      description: Generate bypass codes
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: duo-admin-bypass-codes.createuserbypasscodes
+      outputParameters:
+      - type: object
+        mapping: $.

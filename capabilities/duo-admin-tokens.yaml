@@ -1,0 +1,128 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Duo Admin API — Tokens
+  description: 'Duo Admin API — Tokens. 3 operations. Lead operation: List user hardware tokens. Self-contained Naftiko capability
+    covering one Duo Security business surface.'
+  tags:
+  - Duo Security
+  - Tokens
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DUO_SECURITY_API_KEY: DUO_SECURITY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: duo-admin-tokens
+    baseUri: https://api-XXXXXXXX.duosecurity.com
+    description: Duo Admin API — Tokens business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-v1-users-user_id-tokens
+      path: /admin/v1/users/{user_id}/tokens
+      operations:
+      - name: listusertokens
+        method: GET
+        description: List user hardware tokens
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: associateusertoken
+        method: POST
+        description: Associate hardware token with user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-v1-users-user_id-tokens-token_id
+      path: /admin/v1/users/{user_id}/tokens/{token_id}
+      operations:
+      - name: disassociateusertoken
+        method: DELETE
+        description: Disassociate hardware token from user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.DUO_SECURITY_USER}}'
+      password: '{{env.DUO_SECURITY_PASS}}'
+  exposes:
+  - type: rest
+    namespace: duo-admin-tokens-rest
+    port: 8080
+    description: REST adapter for Duo Admin API — Tokens. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/v1/users/{user-id}/tokens
+      name: admin-v1-users-user-id-tokens
+      description: REST surface for admin-v1-users-user_id-tokens.
+      operations:
+      - method: GET
+        name: listusertokens
+        description: List user hardware tokens
+        call: duo-admin-tokens.listusertokens
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: associateusertoken
+        description: Associate hardware token with user
+        call: duo-admin-tokens.associateusertoken
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/v1/users/{user-id}/tokens/{token-id}
+      name: admin-v1-users-user-id-tokens-token-id
+      description: REST surface for admin-v1-users-user_id-tokens-token_id.
+      operations:
+      - method: DELETE
+        name: disassociateusertoken
+        description: Disassociate hardware token from user
+        call: duo-admin-tokens.disassociateusertoken
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: duo-admin-tokens-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Duo Admin API — Tokens. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-user-hardware-tokens
+      description: List user hardware tokens
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: duo-admin-tokens.listusertokens
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: associate-hardware-token-user
+      description: Associate hardware token with user
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: duo-admin-tokens.associateusertoken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: disassociate-hardware-token-user
+      description: Disassociate hardware token from user
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: duo-admin-tokens.disassociateusertoken
+      outputParameters:
+      - type: object
+        mapping: $.

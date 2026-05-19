@@ -1,0 +1,128 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Duo Admin API — Phones
+  description: 'Duo Admin API — Phones. 3 operations. Lead operation: List user phones. Self-contained Naftiko capability
+    covering one Duo Security business surface.'
+  tags:
+  - Duo Security
+  - Phones
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DUO_SECURITY_API_KEY: DUO_SECURITY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: duo-admin-phones
+    baseUri: https://api-XXXXXXXX.duosecurity.com
+    description: Duo Admin API — Phones business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-v1-users-user_id-phones
+      path: /admin/v1/users/{user_id}/phones
+      operations:
+      - name: listuserphones
+        method: GET
+        description: List user phones
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: associateuserphone
+        method: POST
+        description: Associate phone with user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-v1-users-user_id-phones-phone_id
+      path: /admin/v1/users/{user_id}/phones/{phone_id}
+      operations:
+      - name: disassociateuserphone
+        method: DELETE
+        description: Disassociate phone from user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.DUO_SECURITY_USER}}'
+      password: '{{env.DUO_SECURITY_PASS}}'
+  exposes:
+  - type: rest
+    namespace: duo-admin-phones-rest
+    port: 8080
+    description: REST adapter for Duo Admin API — Phones. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/v1/users/{user-id}/phones
+      name: admin-v1-users-user-id-phones
+      description: REST surface for admin-v1-users-user_id-phones.
+      operations:
+      - method: GET
+        name: listuserphones
+        description: List user phones
+        call: duo-admin-phones.listuserphones
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: associateuserphone
+        description: Associate phone with user
+        call: duo-admin-phones.associateuserphone
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/v1/users/{user-id}/phones/{phone-id}
+      name: admin-v1-users-user-id-phones-phone-id
+      description: REST surface for admin-v1-users-user_id-phones-phone_id.
+      operations:
+      - method: DELETE
+        name: disassociateuserphone
+        description: Disassociate phone from user
+        call: duo-admin-phones.disassociateuserphone
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: duo-admin-phones-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Duo Admin API — Phones. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-user-phones
+      description: List user phones
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: duo-admin-phones.listuserphones
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: associate-phone-user
+      description: Associate phone with user
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: duo-admin-phones.associateuserphone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: disassociate-phone-user
+      description: Disassociate phone from user
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: duo-admin-phones.disassociateuserphone
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,71 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Duo Admin API — WebAuthn
+  description: 'Duo Admin API — WebAuthn. 1 operations. Lead operation: List WebAuthn credentials for user. Self-contained
+    Naftiko capability covering one Duo Security business surface.'
+  tags:
+  - Duo Security
+  - WebAuthn
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DUO_SECURITY_API_KEY: DUO_SECURITY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: duo-admin-webauthn
+    baseUri: https://api-XXXXXXXX.duosecurity.com
+    description: Duo Admin API — WebAuthn business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-v1-users-user_id-webauthncredentials
+      path: /admin/v1/users/{user_id}/webauthncredentials
+      operations:
+      - name: listuserwebauthncredentials
+        method: GET
+        description: List WebAuthn credentials for user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.DUO_SECURITY_USER}}'
+      password: '{{env.DUO_SECURITY_PASS}}'
+  exposes:
+  - type: rest
+    namespace: duo-admin-webauthn-rest
+    port: 8080
+    description: REST adapter for Duo Admin API — WebAuthn. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/v1/users/{user-id}/webauthncredentials
+      name: admin-v1-users-user-id-webauthncredentials
+      description: REST surface for admin-v1-users-user_id-webauthncredentials.
+      operations:
+      - method: GET
+        name: listuserwebauthncredentials
+        description: List WebAuthn credentials for user
+        call: duo-admin-webauthn.listuserwebauthncredentials
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: duo-admin-webauthn-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Duo Admin API — WebAuthn. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-webauthn-credentials-user
+      description: List WebAuthn credentials for user
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: duo-admin-webauthn.listuserwebauthncredentials
+      outputParameters:
+      - type: object
+        mapping: $.
