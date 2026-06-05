@@ -1,64 +1,52 @@
 aid: duo-security
 name: Duo Security
-description: Duo Security is a multi-factor authentication and zero trust security platform from Cisco for securing access
-  to applications and APIs.
+description: >-
+  Duo Security is a multi-factor authentication and zero trust security platform from Cisco for securing access to
+  applications and APIs.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-- Authentication
-- MFA
-- Zero Trust
-- Identity
+  - Authentication
+  - MFA
+  - Zero Trust
+  - Identity
 url: https://raw.githubusercontent.com/api-evangelist/duo-security/refs/heads/main/apis.yml
 created: '2026-03-25'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-- aid: duo-security:duo-admin-api
-  name: Duo Admin API
-  description: The Duo Admin API provides programmatic access to manage users, groups, phones, hardware tokens, WebAuthn credentials,
-    bypass codes, and bulk operations across a Duo Security tenant. Requests are authenticated using HMAC-SHA1 signed HTTP
-    Basic credentials derived from your integration key and secret key.
-  humanURL: https://duo.com/docs/adminapi
-  baseURL: https://api-XXXXXXXX.duosecurity.com
-  tags:
-  - Authentication
-  - MFA
-  - Admin
-  - Identity
-  properties:
-  - type: Documentation
-    url: https://duo.com/docs/adminapi
-  - type: OpenAPI
-    url: openapi/duo-admin-api-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/duo-admin-bulk.yaml
-  - type: NaftikoCapability
-    url: capabilities/duo-admin-bypass-codes.yaml
-  - type: NaftikoCapability
-    url: capabilities/duo-admin-groups.yaml
-  - type: NaftikoCapability
-    url: capabilities/duo-admin-phones.yaml
-  - type: NaftikoCapability
-    url: capabilities/duo-admin-tokens.yaml
-  - type: NaftikoCapability
-    url: capabilities/duo-admin-users.yaml
-  - type: NaftikoCapability
-    url: capabilities/duo-admin-webauthn.yaml
+  - aid: duo-security:duo-admin-api
+    name: Duo Admin API
+    description: >-
+      The Duo Admin API provides programmatic access to manage users, groups, phones, hardware tokens, WebAuthn
+      credentials, bypass codes, and bulk operations across a Duo Security tenant. Requests are authenticated using
+      HMAC-SHA1 signed HTTP Basic credentials derived from your integration key and secret key.
+    humanURL: https://duo.com/docs/adminapi
+    baseURL: https://api-XXXXXXXX.duosecurity.com
+    tags:
+      - Authentication
+      - MFA
+      - Admin
+      - Identity
+    properties:
+      - type: Documentation
+        url: https://duo.com/docs/adminapi
+      - type: OpenAPI
+        url: openapi/duo-admin-api-openapi.yml
 common:
-- type: LinkedIn
-  url: https://www.linkedin.com/company/duosec
-- type: Website
-  url: https://duo.com
-- type: Documentation
-  url: https://duo.com/docs
-- type: GitHubOrganization
-  url: https://github.com/duosecurity
-- type: Integrations
-  url: https://duo.com/integrations
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/duosec
+  - type: Website
+    url: https://duo.com
+  - type: Documentation
+    url: https://duo.com/docs
+  - type: GitHubOrganization
+    url: https://github.com/duosecurity
+  - type: Integrations
+    url: https://duo.com/integrations
 integrations:
-- name: See how Duo strengthens AWS security
-- name: See how Duo secures digital workspaces
+  - name: See how Duo strengthens AWS security
+  - name: See how Duo secures digital workspaces
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
