@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/duo-admin-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic with HMAC-SHA1 signed credentials (integration key as user, signed
+    signature as password).
+  sources:
+  - openapi/duo-admin-api-openapi.yml

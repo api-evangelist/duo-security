@@ -34,6 +34,14 @@ apis:
       - type: OpenAPI
         url: openapi/duo-admin-api-openapi.yml
 common:
+  - type: TrustCenter
+    url: security/duo-security-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/duo-security-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/duo-security-domain-security.yml
+  - type: Authentication
+    url: authentication/duo-security-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/duosec
   - type: Website
@@ -44,6 +52,8 @@ common:
     url: https://github.com/duosecurity
   - type: Integrations
     url: https://duo.com/integrations
+  - url: https://duo.com/feed
+    type: Blog
 integrations:
   - name: See how Duo strengthens AWS security
   - name: See how Duo secures digital workspaces
