@@ -1,0 +1,14 @@
+{
+  "repo": "duo-security",
+  "feeds": [
+    {
+      "source": "https://duo.com/feed",
+      "feed_url": "https://duo.com/feed",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    }
+  ],
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 31
+}
