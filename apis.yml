@@ -34,6 +34,8 @@ apis:
       - type: OpenAPI
         url: openapi/duo-admin-api-openapi.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/duo-security-agentic-access.yml
   - type: TrustCenter
     url: security/duo-security-trust-center.yml
   - type: VulnerabilityDisclosure
