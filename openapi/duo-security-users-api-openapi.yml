@@ -1,39 +1,19 @@
 openapi: 3.1.0
 info:
-  title: Duo Admin API
-  description: >-
-    The Duo Admin API provides programmatic access to the administrative
-    functionality of Duo Security for managing users, groups, phones,
-    hardware tokens, WebAuthn credentials, integrations, and bypass codes.
-    Requests are authenticated using HMAC-SHA1 signed HTTP Basic credentials
-    derived from your integration key and secret key.
-  version: 'v1'
+  title: Duo Admin Bulk Users API
+  description: The Duo Admin API provides programmatic access to the administrative functionality of Duo Security for managing users, groups, phones, hardware tokens, WebAuthn credentials, integrations, and bypass codes. Requests are authenticated using HMAC-SHA1 signed HTTP Basic credentials derived from your integration key and secret key.
+  version: v1
   contact:
     name: Duo Security
     url: https://duo.com/docs/adminapi
-externalDocs:
-  description: Duo Admin API Documentation
-  url: https://duo.com/docs/adminapi
 servers:
-  - url: https://api-XXXXXXXX.duosecurity.com
-    description: Duo Admin API host (replace XXXXXXXX with your tenant identifier)
-tags:
-  - name: Users
-    description: User account management
-  - name: Groups
-    description: Group management and membership
-  - name: Phones
-    description: Phone device management
-  - name: Tokens
-    description: Hardware token management
-  - name: WebAuthn
-    description: WebAuthn credential management
-  - name: Bypass Codes
-    description: Bypass code generation and listing
-  - name: Bulk
-    description: Batched operations
+- url: https://api-XXXXXXXX.duosecurity.com
+  description: Duo Admin API host (replace XXXXXXXX with your tenant identifier)
 security:
-  - basicAuth: []
+- basicAuth: []
+tags:
+- name: Users
+  description: User account management
 paths:
   /admin/v1/users:
     get:
@@ -41,20 +21,20 @@ paths:
       summary: List users
       description: Returns a paged list of users.
       tags:
-        - Users
+      - Users
       parameters:
-        - name: username
-          in: query
-          schema:
-            type: string
-        - name: limit
-          in: query
-          schema:
-            type: integer
-        - name: offset
-          in: query
-          schema:
-            type: integer
+      - name: username
+        in: query
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        schema:
+          type: integer
       responses:
         '200':
           description: Successful response
@@ -67,7 +47,7 @@ paths:
       summary: Create user
       description: Create a new user with the specified username.
       tags:
-        - Users
+      - Users
       requestBody:
         required: true
         content:
@@ -87,7 +67,7 @@ paths:
       summary: Bulk create users
       description: Create multiple users in a single request (max 100).
       tags:
-        - Users
+      - Users
       responses:
         '200':
           description: Bulk create result
@@ -97,7 +77,7 @@ paths:
       summary: Bulk restore users
       description: Restore multiple users from the Trash.
       tags:
-        - Users
+      - Users
       responses:
         '200':
           description: Bulk restore result
@@ -107,23 +87,23 @@ paths:
       summary: Bulk send users to Trash
       description: Send multiple users to the Trash.
       tags:
-        - Users
+      - Users
       responses:
         '200':
           description: Bulk trash result
   /admin/v1/users/{user_id}:
     parameters:
-      - name: user_id
-        in: path
-        required: true
-        schema:
-          type: string
+    - name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
     get:
       operationId: getUser
       summary: Get user
       description: Return the single user with the specified user_id.
       tags:
-        - Users
+      - Users
       responses:
         '200':
           description: Successful response
@@ -136,7 +116,7 @@ paths:
       summary: Update user
       description: Change the username, aliases, full name, status, or other attributes.
       tags:
-        - Users
+      - Users
       responses:
         '200':
           description: User updated
@@ -145,7 +125,7 @@ paths:
       summary: Delete user
       description: Delete the user with the specified user_id.
       tags:
-        - Users
+      - Users
       responses:
         '200':
           description: User deleted
@@ -155,49 +135,23 @@ paths:
       summary: Enroll user
       description: Enroll a user and send an enrollment email.
       tags:
-        - Users
+      - Users
       responses:
         '200':
           description: Enrollment initiated
-  /admin/v1/users/{user_id}/bypass_codes:
-    parameters:
-      - name: user_id
-        in: path
-        required: true
-        schema:
-          type: string
-    get:
-      operationId: listUserBypassCodes
-      summary: List user bypass codes
-      description: Returns paged list of bypass code metadata for a user.
-      tags:
-        - Bypass Codes
-      responses:
-        '200':
-          description: Successful response
-    post:
-      operationId: createUserBypassCodes
-      summary: Generate bypass codes
-      description: Generate bypass codes for the user.
-      tags:
-        - Bypass Codes
-      responses:
-        '200':
-          description: Codes generated
   /admin/v1/users/{user_id}/groups:
     parameters:
-      - name: user_id
-        in: path
-        required: true
-        schema:
-          type: string
+    - name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
     get:
       operationId: listUserGroups
       summary: List user groups
       description: Returns paged list of groups associated with a user.
       tags:
-        - Users
-        - Groups
+      - Users
       responses:
         '200':
           description: Successful response
@@ -205,45 +159,42 @@ paths:
       operationId: associateUserGroup
       summary: Associate group with user
       tags:
-        - Users
-        - Groups
+      - Users
       responses:
         '200':
           description: Group associated
   /admin/v1/users/{user_id}/groups/{group_id}:
     parameters:
-      - name: user_id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: group_id
-        in: path
-        required: true
-        schema:
-          type: string
+    - name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: group_id
+      in: path
+      required: true
+      schema:
+        type: string
     delete:
       operationId: disassociateUserGroup
       summary: Disassociate group from user
       tags:
-        - Users
-        - Groups
+      - Users
       responses:
         '200':
           description: Group disassociated
   /admin/v1/users/{user_id}/phones:
     parameters:
-      - name: user_id
-        in: path
-        required: true
-        schema:
-          type: string
+    - name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
     get:
       operationId: listUserPhones
       summary: List user phones
       tags:
-        - Users
-        - Phones
+      - Users
       responses:
         '200':
           description: Successful response
@@ -251,45 +202,42 @@ paths:
       operationId: associateUserPhone
       summary: Associate phone with user
       tags:
-        - Users
-        - Phones
+      - Users
       responses:
         '200':
           description: Phone associated
   /admin/v1/users/{user_id}/phones/{phone_id}:
     parameters:
-      - name: user_id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: phone_id
-        in: path
-        required: true
-        schema:
-          type: string
+    - name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: phone_id
+      in: path
+      required: true
+      schema:
+        type: string
     delete:
       operationId: disassociateUserPhone
       summary: Disassociate phone from user
       tags:
-        - Users
-        - Phones
+      - Users
       responses:
         '200':
           description: Phone disassociated
   /admin/v1/users/{user_id}/tokens:
     parameters:
-      - name: user_id
-        in: path
-        required: true
-        schema:
-          type: string
+    - name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
     get:
       operationId: listUserTokens
       summary: List user hardware tokens
       tags:
-        - Users
-        - Tokens
+      - Users
       responses:
         '200':
           description: Successful response
@@ -297,60 +245,57 @@ paths:
       operationId: associateUserToken
       summary: Associate hardware token with user
       tags:
-        - Users
-        - Tokens
+      - Users
       responses:
         '200':
           description: Token associated
   /admin/v1/users/{user_id}/tokens/{token_id}:
     parameters:
-      - name: user_id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: token_id
-        in: path
-        required: true
-        schema:
-          type: string
+    - name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: token_id
+      in: path
+      required: true
+      schema:
+        type: string
     delete:
       operationId: disassociateUserToken
       summary: Disassociate hardware token from user
       tags:
-        - Users
-        - Tokens
+      - Users
       responses:
         '200':
           description: Token disassociated
   /admin/v1/users/{user_id}/webauthncredentials:
     parameters:
-      - name: user_id
-        in: path
-        required: true
-        schema:
-          type: string
+    - name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
     get:
       operationId: listUserWebAuthnCredentials
       summary: List WebAuthn credentials for user
       tags:
-        - Users
-        - WebAuthn
+      - Users
       responses:
         '200':
           description: Successful response
   /admin/v1/users/{user_id}/desktopauthenticators:
     parameters:
-      - name: user_id
-        in: path
-        required: true
-        schema:
-          type: string
+    - name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
     get:
       operationId: listUserDesktopAuthenticators
       summary: List desktop authenticators for user
       tags:
-        - Users
+      - Users
       responses:
         '200':
           description: Successful response
@@ -359,138 +304,67 @@ paths:
       operationId: listUserDirectorySyncs
       summary: List user directory syncs
       tags:
-        - Users
+      - Users
       responses:
         '200':
           description: Successful response
   /admin/v1/users/directorysync/{directory_key}/syncuser:
     parameters:
-      - name: directory_key
-        in: path
-        required: true
-        schema:
-          type: string
+    - name: directory_key
+      in: path
+      required: true
+      schema:
+        type: string
     post:
       operationId: syncDirectoryUser
       summary: Sync directory user
       description: Initiate sync for a specific user.
       tags:
-        - Users
+      - Users
       responses:
         '200':
           description: Sync initiated
   /admin/v1/users/{user_id}/send_verification_push:
     parameters:
-      - name: user_id
-        in: path
-        required: true
-        schema:
-          type: string
+    - name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
     post:
       operationId: sendVerificationPush
       summary: Send verification Duo Push
       tags:
-        - Users
+      - Users
       responses:
         '200':
           description: Push sent
   /admin/v1/users/{user_id}/verification_push_response:
     parameters:
-      - name: user_id
-        in: path
-        required: true
-        schema:
-          type: string
+    - name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
     get:
       operationId: getVerificationPushResponse
       summary: Retrieve verification push result
       tags:
-        - Users
+      - Users
       responses:
         '200':
           description: Successful response
-  /admin/v1/groups:
-    get:
-      operationId: listGroups
-      summary: List groups
-      description: Returns a paged list of groups.
-      tags:
-        - Groups
-      responses:
-        '200':
-          description: Successful response
-    post:
-      operationId: createGroup
-      summary: Create group
-      tags:
-        - Groups
-      responses:
-        '200':
-          description: Group created
-  /admin/v1/groups/{group_id}:
-    parameters:
-      - name: group_id
-        in: path
-        required: true
-        schema:
-          type: string
-    post:
-      operationId: updateGroup
-      summary: Update group
-      tags:
-        - Groups
-      responses:
-        '200':
-          description: Group updated
-  /admin/v2/groups/{group_id}:
-    parameters:
-      - name: group_id
-        in: path
-        required: true
-        schema:
-          type: string
-    get:
-      operationId: getGroupV2
-      summary: Get group (v2)
-      description: Retrieve information about a group.
-      tags:
-        - Groups
-      responses:
-        '200':
-          description: Successful response
-  /admin/v2/groups/{group_id}/users:
-    parameters:
-      - name: group_id
-        in: path
-        required: true
-        schema:
-          type: string
-    get:
-      operationId: listGroupUsersV2
-      summary: List group users (v2)
-      description: Returns a paged list of group members.
-      tags:
-        - Groups
-      responses:
-        '200':
-          description: Successful response
-  /admin/v1/bulk:
-    post:
-      operationId: bulkOperations
-      summary: Bulk operations
-      description: Performs a list of operations serially (max 50 ops).
-      tags:
-        - Bulk
-      responses:
-        '200':
-          description: Bulk results
 components:
-  securitySchemes:
-    basicAuth:
-      type: http
-      scheme: basic
-      description: HTTP Basic with HMAC-SHA1 signed credentials (integration key as user, signed signature as password).
   schemas:
+    UserListResponse:
+      type: object
+      properties:
+        stat:
+          type: string
+        response:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
     UserCreate:
       type: object
       properties:
@@ -503,11 +377,11 @@ components:
         status:
           type: string
           enum:
-            - active
-            - bypass
-            - disabled
-            - locked out
-            - pending deletion
+          - active
+          - bypass
+          - disabled
+          - locked out
+          - pending deletion
     UserResponse:
       type: object
       properties:
@@ -515,15 +389,6 @@ components:
           type: string
         response:
           $ref: '#/components/schemas/User'
-    UserListResponse:
-      type: object
-      properties:
-        stat:
-          type: string
-        response:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
     User:
       type: object
       properties:
@@ -541,3 +406,11 @@ components:
           type: integer
         last_login:
           type: integer
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic with HMAC-SHA1 signed credentials (integration key as user, signed signature as password).
+externalDocs:
+  description: Duo Admin API Documentation
+  url: https://duo.com/docs/adminapi

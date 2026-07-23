@@ -1,0 +1,41 @@
+openapi: 3.1.0
+info:
+  title: Duo Admin Bulk WebAuthn API
+  description: The Duo Admin API provides programmatic access to the administrative functionality of Duo Security for managing users, groups, phones, hardware tokens, WebAuthn credentials, integrations, and bypass codes. Requests are authenticated using HMAC-SHA1 signed HTTP Basic credentials derived from your integration key and secret key.
+  version: v1
+  contact:
+    name: Duo Security
+    url: https://duo.com/docs/adminapi
+servers:
+- url: https://api-XXXXXXXX.duosecurity.com
+  description: Duo Admin API host (replace XXXXXXXX with your tenant identifier)
+security:
+- basicAuth: []
+tags:
+- name: WebAuthn
+  description: WebAuthn credential management
+paths:
+  /admin/v1/users/{user_id}/webauthncredentials:
+    parameters:
+    - name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: listUserWebAuthnCredentials
+      summary: List WebAuthn credentials for user
+      tags:
+      - WebAuthn
+      responses:
+        '200':
+          description: Successful response
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic with HMAC-SHA1 signed credentials (integration key as user, signed signature as password).
+externalDocs:
+  description: Duo Admin API Documentation
+  url: https://duo.com/docs/adminapi

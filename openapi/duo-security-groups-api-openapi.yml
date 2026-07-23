@@ -1,0 +1,135 @@
+openapi: 3.1.0
+info:
+  title: Duo Admin Bulk Groups API
+  description: The Duo Admin API provides programmatic access to the administrative functionality of Duo Security for managing users, groups, phones, hardware tokens, WebAuthn credentials, integrations, and bypass codes. Requests are authenticated using HMAC-SHA1 signed HTTP Basic credentials derived from your integration key and secret key.
+  version: v1
+  contact:
+    name: Duo Security
+    url: https://duo.com/docs/adminapi
+servers:
+- url: https://api-XXXXXXXX.duosecurity.com
+  description: Duo Admin API host (replace XXXXXXXX with your tenant identifier)
+security:
+- basicAuth: []
+tags:
+- name: Groups
+  description: Group management and membership
+paths:
+  /admin/v1/users/{user_id}/groups:
+    parameters:
+    - name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: listUserGroups
+      summary: List user groups
+      description: Returns paged list of groups associated with a user.
+      tags:
+      - Groups
+      responses:
+        '200':
+          description: Successful response
+    post:
+      operationId: associateUserGroup
+      summary: Associate group with user
+      tags:
+      - Groups
+      responses:
+        '200':
+          description: Group associated
+  /admin/v1/users/{user_id}/groups/{group_id}:
+    parameters:
+    - name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: group_id
+      in: path
+      required: true
+      schema:
+        type: string
+    delete:
+      operationId: disassociateUserGroup
+      summary: Disassociate group from user
+      tags:
+      - Groups
+      responses:
+        '200':
+          description: Group disassociated
+  /admin/v1/groups:
+    get:
+      operationId: listGroups
+      summary: List groups
+      description: Returns a paged list of groups.
+      tags:
+      - Groups
+      responses:
+        '200':
+          description: Successful response
+    post:
+      operationId: createGroup
+      summary: Create group
+      tags:
+      - Groups
+      responses:
+        '200':
+          description: Group created
+  /admin/v1/groups/{group_id}:
+    parameters:
+    - name: group_id
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      operationId: updateGroup
+      summary: Update group
+      tags:
+      - Groups
+      responses:
+        '200':
+          description: Group updated
+  /admin/v2/groups/{group_id}:
+    parameters:
+    - name: group_id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: getGroupV2
+      summary: Get group (v2)
+      description: Retrieve information about a group.
+      tags:
+      - Groups
+      responses:
+        '200':
+          description: Successful response
+  /admin/v2/groups/{group_id}/users:
+    parameters:
+    - name: group_id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: listGroupUsersV2
+      summary: List group users (v2)
+      description: Returns a paged list of group members.
+      tags:
+      - Groups
+      responses:
+        '200':
+          description: Successful response
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic with HMAC-SHA1 signed credentials (integration key as user, signed signature as password).
+externalDocs:
+  description: Duo Admin API Documentation
+  url: https://duo.com/docs/adminapi
