@@ -1,0 +1,26 @@
+{
+  "provider": "duo-security",
+  "sources": [
+    "duo-security-bulk-api-openapi.yml",
+    "duo-security-bypass-codes-api-openapi.yml",
+    "duo-security-groups-api-openapi.yml",
+    "duo-security-phones-api-openapi.yml",
+    "duo-security-tokens-api-openapi.yml",
+    "duo-security-users-api-openapi.yml",
+    "duo-security-webauthn-api-openapi.yml"
+  ],
+  "outputs": [
+    "duo-security-bulk-api-openapi.yml",
+    "duo-security-bypass-codes-api-openapi.yml",
+    "duo-security-groups-api-openapi.yml",
+    "duo-security-phones-api-openapi.yml",
+    "duo-security-tokens-api-openapi.yml",
+    "duo-security-users-api-openapi.yml",
+    "duo-security-webauthn-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
