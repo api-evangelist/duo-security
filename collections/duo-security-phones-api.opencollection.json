@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Duo Admin Bulk Phones API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Phones",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List user phones",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id/phones",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List user phones"
+        },
+        {
+          "info": {
+            "name": "Associate phone with user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id/phones",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Associate phone with user"
+        },
+        {
+          "info": {
+            "name": "Disassociate phone from user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id/phones/:phone_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "phone_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Disassociate phone from user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,117 @@
+{
+  "item": [
+    {
+      "id": "d1095850-a486-4cb1-a76c-f0bfbaeb51dd",
+      "name": "Bulk",
+      "description": {
+        "content": "Batched operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0fb02864-a53d-462d-a5b2-7746cc5cca00",
+          "name": "Bulk operations",
+          "request": {
+            "name": "Bulk operations",
+            "description": {
+              "content": "Performs a list of operations serially (max 50 ops).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "v1",
+                "bulk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2e9ca0eb-a71c-483f-81e2-0809b85844d0",
+              "name": "Bulk results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "v1",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-XXXXXXXX.duosecurity.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "85c6165f-874e-484a-a888-f34ed9e9bc10",
+    "name": "Duo Admin Bulk API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Duo Admin API provides programmatic access to the administrative functionality of Duo Security for managing users, groups, phones, hardware tokens, WebAuthn credentials, integrations, and bypass codes. Requests are authenticated using HMAC-SHA1 signed HTTP Basic credentials derived from your integration key and secret key.\n\nContact Support:\n Name: Duo Security",
+      "type": "text/plain"
+    }
+  }
+}

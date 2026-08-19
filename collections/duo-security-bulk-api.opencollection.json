@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Duo Admin Bulk API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bulk",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bulk operations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/bulk"
+          },
+          "docs": "Performs a list of operations serially (max 50 ops)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

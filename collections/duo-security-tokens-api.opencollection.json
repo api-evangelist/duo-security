@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Duo Admin Bulk Tokens API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List user hardware tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id/tokens",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List user hardware tokens"
+        },
+        {
+          "info": {
+            "name": "Associate hardware token with user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id/tokens",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Associate hardware token with user"
+        },
+        {
+          "info": {
+            "name": "Disassociate hardware token from user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id/tokens/:token_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "token_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Disassociate hardware token from user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

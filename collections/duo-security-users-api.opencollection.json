@@ -1,0 +1,444 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Duo Admin Bulk Users API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a paged list of users."
+        },
+        {
+          "info": {
+            "name": "Create user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Create a new user with the specified username."
+        },
+        {
+          "info": {
+            "name": "Bulk create users",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/bulk_create"
+          },
+          "docs": "Create multiple users in a single request (max 100)."
+        },
+        {
+          "info": {
+            "name": "Bulk restore users",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/bulk_restore"
+          },
+          "docs": "Restore multiple users from the Trash."
+        },
+        {
+          "info": {
+            "name": "Bulk send users to Trash",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/bulk_send_to_trash"
+          },
+          "docs": "Send multiple users to the Trash."
+        },
+        {
+          "info": {
+            "name": "Get user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Return the single user with the specified user_id."
+        },
+        {
+          "info": {
+            "name": "Update user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Change the username, aliases, full name, status, or other attributes."
+        },
+        {
+          "info": {
+            "name": "Delete user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete the user with the specified user_id."
+        },
+        {
+          "info": {
+            "name": "Enroll user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/enroll"
+          },
+          "docs": "Enroll a user and send an enrollment email."
+        },
+        {
+          "info": {
+            "name": "List user groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id/groups",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns paged list of groups associated with a user."
+        },
+        {
+          "info": {
+            "name": "Associate group with user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id/groups",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Associate group with user"
+        },
+        {
+          "info": {
+            "name": "Disassociate group from user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id/groups/:group_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "group_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Disassociate group from user"
+        },
+        {
+          "info": {
+            "name": "List user phones",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id/phones",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List user phones"
+        },
+        {
+          "info": {
+            "name": "Associate phone with user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id/phones",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Associate phone with user"
+        },
+        {
+          "info": {
+            "name": "Disassociate phone from user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id/phones/:phone_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "phone_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Disassociate phone from user"
+        },
+        {
+          "info": {
+            "name": "List user hardware tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id/tokens",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List user hardware tokens"
+        },
+        {
+          "info": {
+            "name": "Associate hardware token with user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id/tokens",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Associate hardware token with user"
+        },
+        {
+          "info": {
+            "name": "Disassociate hardware token from user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id/tokens/:token_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "token_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Disassociate hardware token from user"
+        },
+        {
+          "info": {
+            "name": "List WebAuthn credentials for user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id/webauthncredentials",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List WebAuthn credentials for user"
+        },
+        {
+          "info": {
+            "name": "List desktop authenticators for user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id/desktopauthenticators",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List desktop authenticators for user"
+        },
+        {
+          "info": {
+            "name": "List user directory syncs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/directorysync"
+          },
+          "docs": "List user directory syncs"
+        },
+        {
+          "info": {
+            "name": "Sync directory user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/directorysync/:directory_key/syncuser",
+            "params": [
+              {
+                "name": "directory_key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Initiate sync for a specific user."
+        },
+        {
+          "info": {
+            "name": "Send verification Duo Push",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id/send_verification_push",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Send verification Duo Push"
+        },
+        {
+          "info": {
+            "name": "Retrieve verification push result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id/verification_push_response",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve verification push result"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

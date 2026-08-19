@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Duo Admin Bulk Bypass Codes API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bypass Codes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List user bypass codes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id/bypass_codes",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns paged list of bypass code metadata for a user."
+        },
+        {
+          "info": {
+            "name": "Generate bypass codes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id/bypass_codes",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Generate bypass codes for the user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

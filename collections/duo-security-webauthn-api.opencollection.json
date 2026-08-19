@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Duo Admin Bulk WebAuthn API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "WebAuthn",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List WebAuthn credentials for user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-XXXXXXXX.duosecurity.com/admin/v1/users/:user_id/webauthncredentials",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List WebAuthn credentials for user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

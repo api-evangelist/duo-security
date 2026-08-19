@@ -1,8 +1,7 @@
 aid: duo-security
 name: Duo Security
-description: >-
-  Duo Security is a multi-factor authentication and zero trust security platform from Cisco for securing access to
-  applications and APIs.
+description: Duo Security is a multi-factor authentication and zero trust security platform from Cisco for securing
+  access to applications and APIs.
 type: Index
 accessModel:
   pricing: freemium
@@ -19,13 +18,13 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/duo-security.png
 tags:
-  - Authentication
-  - MFA
-  - Zero Trust
-  - Identity
+- Authentication
+- MFA
+- Zero Trust
+- Identity
 url: https://raw.githubusercontent.com/api-evangelist/duo-security/refs/heads/main/apis.yml
 created: '2026-03-25'
-modified: '2026-05-19'
+modified: '2026-08-19'
 specificationVersion: '0.23'
 apis:
 - aid: duo-security:duo-security-bulk-api
@@ -113,31 +112,40 @@ apis:
   - type: Documentation
     url: https://duo.com/docs/adminapi
 common:
-  - type: AgenticAccess
-    url: agentic-access/duo-security-agentic-access.yml
-  - type: TrustCenter
-    url: security/duo-security-trust-center.yml
-  - type: VulnerabilityDisclosure
-    url: security/duo-security-vulnerability-disclosure.yml
-  - type: DomainSecurity
-    url: security/duo-security-domain-security.yml
-  - type: Authentication
-    url: authentication/duo-security-authentication.yml
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/duosec
-  - type: Website
-    url: https://duo.com
-  - type: Documentation
-    url: https://duo.com/docs
-  - type: GitHubOrganization
-    url: https://github.com/duosecurity
-  - type: Integrations
-    url: https://duo.com/integrations
-  - url: https://duo.com/feed
-    type: Blog
+- type: ParentCompany
+  url: https://apis.io/providers/cisco/
+  name: Cisco
+  x-relationship: acquisition
+  x-generated-by: cisco-family:2026-08-19
+  x-acquired: 2018
+- type: AgenticAccess
+  url: agentic-access/duo-security-agentic-access.yml
+- type: TrustCenter
+  url: security/duo-security-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/duo-security-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/duo-security-domain-security.yml
+- type: Authentication
+  url: authentication/duo-security-authentication.yml
+- type: LinkedIn
+  url: https://www.linkedin.com/company/duosec
+- type: Website
+  url: https://duo.com
+- type: Documentation
+  url: https://duo.com/docs
+- type: GitHubOrganization
+  url: https://github.com/duosecurity
+- type: Integrations
+  url: https://duo.com/integrations
+- url: https://duo.com/feed
+  type: Blog
 integrations:
-  - name: See how Duo strengthens AWS security
-  - name: See how Duo secures digital workspaces
+- name: See how Duo strengthens AWS security
+- name: See how Duo secures digital workspaces
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
+x-parent: cisco
+x-relationship: acquisition
+x-acquired: 2018
