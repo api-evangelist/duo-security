@@ -26,7 +26,7 @@ tags:
 url: https://raw.githubusercontent.com/api-evangelist/duo-security/refs/heads/main/apis.yml
 created: '2026-03-25'
 modified: '2026-05-19'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: duo-security:duo-security-bulk-api
   name: Duo Security Bulk API
