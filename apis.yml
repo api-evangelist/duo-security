@@ -57,6 +57,8 @@ apis:
   humanURL: https://duo.com/docs/adminapi
   baseURL: https://api-XXXXXXXX.duosecurity.com
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
@@ -93,6 +95,8 @@ apis:
   humanURL: https://duo.com/docs/adminapi
   baseURL: https://api-XXXXXXXX.duosecurity.com
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
