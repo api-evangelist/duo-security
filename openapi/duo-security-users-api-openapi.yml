@@ -356,22 +356,6 @@ paths:
           description: Successful response
 components:
   schemas:
-    UserListResponse:
-      type: object
-      properties:
-        stat:
-          type: string
-        response:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
-    UserResponse:
-      type: object
-      properties:
-        stat:
-          type: string
-        response:
-          $ref: '#/components/schemas/User'
     UserCreate:
       type: object
       properties:
@@ -406,6 +390,22 @@ components:
           type: integer
         last_login:
           type: integer
+    UserListResponse:
+      type: object
+      properties:
+        stat:
+          type: string
+        response:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+    UserResponse:
+      type: object
+      properties:
+        stat:
+          type: string
+        response:
+          $ref: '#/components/schemas/User'
   securitySchemes:
     basicAuth:
       type: http

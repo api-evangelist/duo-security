@@ -34,6 +34,7 @@ tags:
 - MFA
 - Zero Trust
 - Identity
+- Identity Federation
 url: https://raw.githubusercontent.com/api-evangelist/duo-security/refs/heads/main/apis.yml
 created: '2026-03-25'
 modified: '2026-08-19'
