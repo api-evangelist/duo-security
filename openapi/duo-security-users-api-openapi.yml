@@ -365,23 +365,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/User'
-    UserCreate:
-      type: object
-      properties:
-        username:
-          type: string
-        realname:
-          type: string
-        email:
-          type: string
-        status:
-          type: string
-          enum:
-          - active
-          - bypass
-          - disabled
-          - locked out
-          - pending deletion
     User:
       type: object
       properties:
@@ -406,6 +389,23 @@ components:
           type: string
         response:
           $ref: '#/components/schemas/User'
+    UserCreate:
+      type: object
+      properties:
+        username:
+          type: string
+        realname:
+          type: string
+        email:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - bypass
+          - disabled
+          - locked out
+          - pending deletion
   securitySchemes:
     basicAuth:
       type: http
