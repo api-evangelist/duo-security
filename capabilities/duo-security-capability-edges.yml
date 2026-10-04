@@ -1,0 +1,70 @@
+slug: duo-security
+provider: Duo Security
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 6
+edges:
+- tag: Users
+  spec_file: duo-security-users-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.88
+  evidence: POST /admin/v1/users/enroll  enrollUser  Enroll user
+  reason: User create/update/delete and MFA enrolment on a multi-factor authentication platform is identity
+    lifecycle (joiners-movers-leavers) administration, not HR employee records.
+- tag: Bypass Codes
+  spec_file: duo-security-bypass-codes-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /admin/v1/users/{user_id}/bypass_codes  createUserBypassCodes  Generate bypass codes
+  reason: Generating and listing per-user authentication bypass codes on an MFA platform is credential/authentication
+    administration, i.e. Identity & Access Management.
+- tag: Tokens
+  spec_file: duo-security-tokens-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /admin/v1/users/{user_id}/tokens  associateUserToken  Associate hardware token with user
+  reason: Hardware token association/disassociation per user is MFA authenticator lifecycle management,
+    squarely Identity & Access Management.
+- tag: Webauthn
+  spec_file: duo-security-webauthn-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: GET /admin/v1/users/{user_id}/webauthncredentials  listUserWebAuthnCredentials  List WebAuthn
+    credentials for user
+  reason: Listing a user's WebAuthn authentication credentials is credential administration within Identity
+    & Access Management.
+- tag: Groups
+  spec_file: duo-security-groups-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.82
+  evidence: POST /admin/v1/users/{user_id}/groups  associateUserGroup  Associate group with user
+  reason: Creating groups and associating/disassociating users with them in an MFA/zero-trust admin API
+    is access-group administration under Identity & Access Management, not HR org structure.
+- tag: Phones
+  spec_file: duo-security-phones-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST /admin/v1/users/{user_id}/phones  associateUserPhone  Associate phone with user
+  reason: Phones here are second-factor authentication devices bound to users on Duo's MFA platform —
+    authenticator enrolment, part of Identity & Access Management.

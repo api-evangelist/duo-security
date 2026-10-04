@@ -131,6 +131,9 @@ apis:
   - type: Documentation
     url: https://duo.com/docs/adminapi
 common:
+- type: CapabilityMap
+  url: capabilities/duo-security-capability-edges.yml
+  name: Duo Security Business Capability Map
 - type: ParentCompany
   url: https://apis.io/providers/cisco/
   name: Cisco
